@@ -13,7 +13,6 @@ const SurveyContainer = styled.div`
 
 const QuestionTitle = styled.h2`
   text-decoration: underline;
-  text-decoration-color: ${colors.primary};
 `
 
 const QuestionContent = styled.span`
@@ -22,9 +21,6 @@ const QuestionContent = styled.span`
 
 const LinkWrapper = styled.div`
   padding-top: 30px;
-  & a {
-    color: black;
-  }
   & a:first-of-type {
     margin-right: 20px;
   }
