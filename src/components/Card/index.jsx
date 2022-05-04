@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import colors from '../../utils/style/colors'
 
 const CardLabel = styled.span`
-  color: ${colors.red};
+  color: ${colors.fontLight};
   font-size: 22px;
   font-weight: bold;
 `
@@ -19,7 +19,7 @@ const CardWrapper = styled.div`
   flex-direction: column;
   padding: 15px;
   background-color: ${colors.secondary};
-  color: ${colors.red};
+  color: ${colors.fontLight};
   border-radius: 30px;
   width: 350px;
   transition: 200ms;

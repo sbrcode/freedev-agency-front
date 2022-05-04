@@ -1,44 +1,40 @@
-import DefaultPicture from '../../assets/profile.png'
-import Card from '../../components/Card'
 import styled from 'styled-components'
 
-const freelanceProfiles = [
-  {
-    name: 'Jane Doe',
-    jobTitle: 'Devops',
-    picture: DefaultPicture,
-  },
-  {
-    name: 'John Doe',
-    jobTitle: 'Developpeur frontend',
-    picture: DefaultPicture,
-  },
-  {
-    name: 'Jeanne Biche',
-    jobTitle: 'Développeuse Fullstack',
-    picture: DefaultPicture,
-  },
-]
+import DefaultPicture from '../../assets/profile.png'
+import Card from '../../components/Card'
+import { useFetch } from '../../utils/hooks'
+import { ErrorStyle, Loader } from '../../utils/style/Atoms'
 
 const CardsContainer = styled.div`
+  margin-left: 20px;
   display: grid;
   gap: 24px;
-  grid-template-rows: 350px 350px;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
 `
 
 const Freelances = () => {
+  const { data, isLoading, error } = useFetch(`http://localhost:8000/freelances`)
+  const { freelancersList } = data
+
+  if (error) {
+    return <ErrorStyle>Il y a eu un problème. Veuillez raffraîchir votre page svp</ErrorStyle>
+  }
   return (
     <CardsContainer>
-      <h1>Freelances 👩‍💻👨‍💻👩‍💻</h1>
-      {freelanceProfiles.map((profile, index) => (
-        <Card
-          key={`${profile.name}-${index}`}
-          label={profile.jobTitle}
-          picture={profile.picture}
-          title={profile.name}
-        />
-      ))}
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          {freelancersList.map((profile) => (
+            <Card
+              key={profile.id}
+              label={profile.job}
+              picture={profile.picture || DefaultPicture}
+              title={profile.name}
+            />
+          ))}
+        </>
+      )}
     </CardsContainer>
   )
 }

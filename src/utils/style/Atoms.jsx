@@ -29,6 +29,11 @@ export const StyledLink = styled(Link)`
   border-radius: 30px;
   ${({ theme }) =>
     theme === 'light'
-      ? `color: ${colors.primary};  background-color: ${colors.light};`
-      : `color: ${colors.light};  background-color: ${colors.primary};`}
+      ? `color: ${colors.fontDark};  background-color: ${colors.backgroundDark};`
+      : `color: ${colors.fontLight};  background-color: ${colors.fontDark};`}
+`
+
+export const ErrorStyle = styled.span`
+  display: flex;
+  margin: 240px;
 `

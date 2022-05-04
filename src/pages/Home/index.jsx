@@ -14,7 +14,7 @@ const HomerContainer = styled.div`
   padding: 60px 90px;
   display: flex;
   flex-direction: row;
-  max-width: 1200px;
+  max-width: 800px;
 `
 
 const LeftCol = styled.div`
@@ -31,11 +31,12 @@ const StyledTitle = styled.h2`
   padding-bottom: 30px;
   max-width: 280px;
   line-height: 50px;
-  color: ${({ theme }) => (theme === 'dark' ? colors.primary : colors.light)};
+  color: ${({ theme }) => (theme === 'light' ? colors.fontLight : colors.fontDark)};
 `
 
 const Illustration = styled.img`
   flex: 1;
+  width: 50%;
 `
 
 function Home() {

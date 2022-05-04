@@ -7,6 +7,7 @@ import { SurveyContext } from '../../utils/context'
 import { Loader } from '../../utils/style/Atoms'
 import colors from '../../utils/style/colors'
 import { useFetch } from '../../utils/hooks'
+import { ErrorStyle } from '../../utils/style/Atoms'
 
 const SurveyContainer = styled.div`
   display: flex;
@@ -51,11 +52,6 @@ const ReplyBox = styled.button`
 const ReplyWrapper = styled.div`
   display: flex;
   flex-direction: row;
-`
-
-const ErrorStyle = styled.span`
-  display: flex;
-  margin: 240px;
 `
 
 const Survey = () => {

@@ -14,7 +14,7 @@ const ResultsContainer = styled.div`
 `
 
 const ResultsTitle = styled.h2`
-  color: ${({ theme }) => (theme === 'dark' ? colors.primary : colors.light)};
+  color: ${({ theme }) => (theme === 'light' ? colors.fontLight : colors.fontDark)};
   font-weight: bold;
   font-size: 28px;
   max-width: 70%;
@@ -29,7 +29,7 @@ const DescriptionWrapper = styled.div`
 `
 
 const JobTitle = styled.span`
-  color: ${({ theme }) => (theme === 'dark' ? colors.primary : colors.light)};
+  color: ${({ theme }) => (theme === 'light' ? colors.fontLight : colors.fontDark)};
   text-transform: capitalize;
 `
 

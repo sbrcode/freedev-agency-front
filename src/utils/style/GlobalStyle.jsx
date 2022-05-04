@@ -7,11 +7,11 @@ const StyledGlobalStyle = createGlobalStyle`
     font-family: 'Trebuchet MS', Helvetica, sans-serif;
   }
   body {
-    background-color: ${({ theme }) => (theme ? `${colors.primary};` : `${colors.light};`)};
-    color:  ${({ theme }) => (theme ? `${colors.light};` : `${colors.primary};`)};
-    text-decoration-color: ${({ theme }) => (theme ? `${colors.light};` : `${colors.primary};`)};
+    background-color: ${({ theme }) => (theme ? `${colors.backgroundDark};` : `${colors.backgroundLight};`)};
+    color:  ${({ theme }) => (theme ? `${colors.fontDark};` : `${colors.fontLight};`)};
+    text-decoration-color: ${({ theme }) => (theme ? `${colors.fontDark};` : `${colors.fontLight};`)};
     & a {
-      color: ${({ theme }) => (theme ? `${colors.grey};` : `${colors.red};`)};
+      color: ${({ theme }) => (theme ? `${colors.fontDark};` : `${colors.fontLight};`)};
     }
     margin: 0;  
   }
@@ -20,7 +20,7 @@ const StyledGlobalStyle = createGlobalStyle`
 const GlobalStyle = () => {
   const { theme } = useTheme()
 
-  return <StyledGlobalStyle theme={theme === 'light'} />
+  return <StyledGlobalStyle theme={theme === 'dark'} />
 }
 
 export default GlobalStyle

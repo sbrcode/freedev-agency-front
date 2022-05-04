@@ -1,9 +1,11 @@
 const colors = {
   primary: '#2F2E41',
-  secondary: 'lavender',
-  light: 'oldlace',
+  secondary: 'ghostwhite',
+  fontLight: '#2F2E41',
+  fontDark: 'antiquewhite',
+  backgroundLight: 'white',
+  backgroundDark: '#2F2E41',
   red: 'darkred',
-  grey: 'lightcyan',
   darkGrey: 'darkgrey',
 }
 
