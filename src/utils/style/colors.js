@@ -1,9 +1,10 @@
 const colors = {
   primary: '#2F2E41',
-  secondary: '#F9F9FC',
-  light: 'white',
+  secondary: 'lavender',
+  light: 'oldlace',
   red: 'darkred',
-  grey: 'lightgrey',
+  grey: 'lightcyan',
+  darkGrey: 'darkgrey',
 }
 
 export default colors

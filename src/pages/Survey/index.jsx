@@ -1,10 +1,12 @@
-import { useEffect, useState, useContext } from 'react'
-import { SurveyContext } from '../../utils/context'
+import { useContext } from 'react'
 import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+
+import { SurveyContext } from '../../utils/context'
 import { Loader } from '../../utils/style/Atoms'
 import colors from '../../utils/style/colors'
+import { useFetch } from '../../utils/hooks'
 
 const SurveyContainer = styled.div`
   display: flex;
@@ -29,15 +31,15 @@ const LinkWrapper = styled.div`
 
 const ReplyBox = styled.button`
   border: none;
-  height: 100px;
-  width: 300px;
+  height: 80px;
+  width: 150px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${colors.backgroundLight};
+  background-color: ${colors.secondary};
   border-radius: 30px;
   cursor: pointer;
-  box-shadow: ${(props) => (props.isSelected ? `0px 0px 0px 2px ${colors.primary} inset` : 'none')};
+  box-shadow: ${(props) => (props.isSelected ? `0px 0px 0px 2px ${colors.red} inset` : 'none')};
   &:first-child {
     margin-right: 15px;
   }
@@ -51,39 +53,31 @@ const ReplyWrapper = styled.div`
   flex-direction: row;
 `
 
+const ErrorStyle = styled.span`
+  display: flex;
+  margin: 240px;
+`
+
 const Survey = () => {
   const params = useParams()
   const questionNumber = parseInt(params.questionId)
-  const prevQuestionNumber = questionNumber === 1 ? 1 : questionNumber - 1
+  const prevQuestionNumber = questionNumber - 1
   const nextQuestionNumber = questionNumber + 1
-  const [surveyData, setSurveyData] = useState({})
-  const [isDataLoading, setDataLoading] = useState(false)
   const { answers, saveAnswers } = useContext(SurveyContext)
-
-  useEffect(() => {
-    fetchData()
-  }, [])
-
-  const fetchData = async () => {
-    setDataLoading(true)
-    try {
-      const response = await fetch(`http://localhost:8000/survey`)
-      const { surveyData } = await response.json()
-      setSurveyData(surveyData)
-      setDataLoading(false)
-    } catch (error) {
-      console.log(error)
-    }
-  }
+  const { data, isLoading, error } = useFetch(`http://localhost:8000/survey`)
+  const { surveyData } = data
 
   const saveReply = (answer) => {
     saveAnswers({ [questionNumber]: answer })
   }
 
+  if (error) {
+    return <ErrorStyle>Il y a eu un problème. Veuillez raffraîchir votre page svp</ErrorStyle>
+  }
   return (
     <SurveyContainer>
       <QuestionTitle>Question {questionNumber}</QuestionTitle>
-      {isDataLoading ? <Loader /> : <QuestionContent>{surveyData[questionNumber]} </QuestionContent>}
+      {isLoading ? <Loader /> : <QuestionContent>{surveyData && surveyData[questionNumber]}</QuestionContent>}
       <ReplyWrapper>
         <ReplyBox onClick={() => saveReply(true)} isSelected={answers[questionNumber] === true}>
           Oui
@@ -93,11 +87,11 @@ const Survey = () => {
         </ReplyBox>
       </ReplyWrapper>
       <LinkWrapper>
-        <Link to={`/survey/${prevQuestionNumber}`}>Précédent</Link>
-        {surveyData[questionNumber + 1] ? (
+        {prevQuestionNumber !== 0 && <Link to={`/survey/${prevQuestionNumber}`}>Précédent</Link>}
+        {surveyData && surveyData[questionNumber + 1] ? (
           <Link to={`/survey/${nextQuestionNumber}`}>Suivant</Link>
         ) : (
-          <Link to="/results">Résultats</Link>
+          prevQuestionNumber !== 0 && <Link to="/results">Résultats</Link>
         )}
       </LinkWrapper>
     </SurveyContainer>

@@ -15,16 +15,14 @@ const NightModeButton = styled.button`
   background-color: transparent;
   border: none;
   cursor: pointer;
-  color: ${colors.grey};
+  color: ${colors.darkGrey};
 `
 
 const Footer = () => {
   const { toggleTheme, theme } = useContext(ThemeContext)
   return (
     <FooterContainer>
-      <NightModeButton onClick={() => toggleTheme()}>
-        Changer de mode : {theme === 'light' ? '☀️' : '🌙'}
-      </NightModeButton>
+      <NightModeButton onClick={() => toggleTheme()}>Mode : {theme === 'light' ? '☀️' : '🌙'}</NightModeButton>
     </FooterContainer>
   )
 }

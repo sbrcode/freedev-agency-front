@@ -1,5 +1,4 @@
-import { useContext } from 'react'
-import { ThemeContext } from '../context'
+import { useTheme } from '../../utils/hooks'
 import { createGlobalStyle } from 'styled-components'
 import colors from '../style/colors'
 
@@ -8,20 +7,20 @@ const StyledGlobalStyle = createGlobalStyle`
     font-family: 'Trebuchet MS', Helvetica, sans-serif;
   }
   body {
-    background-color: ${({ isDarkMode }) => (isDarkMode ? `${colors.primary};` : `${colors.light};`)};
-    color:  ${({ isDarkMode }) => (isDarkMode ? `${colors.light};` : `${colors.primary};`)};
-    text-decoration-color: ${({ isDarkMode }) => (isDarkMode ? `${colors.light};` : `${colors.primary};`)};
+    background-color: ${({ theme }) => (theme ? `${colors.primary};` : `${colors.light};`)};
+    color:  ${({ theme }) => (theme ? `${colors.light};` : `${colors.primary};`)};
+    text-decoration-color: ${({ theme }) => (theme ? `${colors.light};` : `${colors.primary};`)};
     & a {
-      color: ${({ isDarkMode }) => (isDarkMode ? `${colors.grey};` : `${colors.red};`)};
+      color: ${({ theme }) => (theme ? `${colors.grey};` : `${colors.red};`)};
     }
     margin: 0;  
   }
 `
 
 const GlobalStyle = () => {
-  const { theme } = useContext(ThemeContext)
+  const { theme } = useTheme()
 
-  return <StyledGlobalStyle isDarkMode={theme === 'dark'} />
+  return <StyledGlobalStyle theme={theme === 'light'} />
 }
 
 export default GlobalStyle
