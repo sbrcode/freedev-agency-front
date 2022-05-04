@@ -22,7 +22,9 @@ const Footer = () => {
   const { toggleTheme, theme } = useContext(ThemeContext)
   return (
     <FooterContainer>
-      <NightModeButton onClick={() => toggleTheme()}>Mode : {theme === 'light' ? '☀️' : '🌙'}</NightModeButton>
+      <NightModeButton onClick={() => toggleTheme()}>
+        Mode {'-->'} {theme === 'light' ? '☀️' : '🌙'}
+      </NightModeButton>
     </FooterContainer>
   )
 }
