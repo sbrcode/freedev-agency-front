@@ -39,7 +39,7 @@ const Illustration = styled.img`
   width: 50%;
 `
 
-function Home() {
+const Home = () => {
   const { theme } = useTheme()
 
   return (

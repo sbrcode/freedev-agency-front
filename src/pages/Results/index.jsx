@@ -49,7 +49,7 @@ const LoaderWrapper = styled.div`
   justify-content: center;
 `
 
-const formatFetchParams = (answers) => {
+export const formatFetchParams = (answers) => {
   const answerNumbers = Object.keys(answers)
 
   return answerNumbers.reduce((previousParams, answerNumber, index) => {
@@ -57,6 +57,13 @@ const formatFetchParams = (answers) => {
     const separator = isFirstParam ? '' : '&'
     return `${previousParams}${separator}a${answerNumber}=${answers[answerNumber]}`
   }, '')
+}
+
+export const formatJobList = (title, listLength, index) => {
+  if (index === listLength - 1) {
+    return title
+  }
+  return `${title},`
 }
 
 const Results = () => {
@@ -83,8 +90,7 @@ const Results = () => {
         {resultsData &&
           resultsData.map((result, index) => (
             <JobTitle key={`result-title-${index}-${result.title}`} theme={theme}>
-              {result.title}
-              {index === resultsData.length - 1 ? '' : ','}
+              {formatJobList(result.title, resultsData.length, index)}
             </JobTitle>
           ))}
       </ResultsTitle>
