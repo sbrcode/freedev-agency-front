@@ -3,7 +3,7 @@ import { SurveyContext } from '../../utils/context'
 import styled from 'styled-components'
 import colors from '../../utils/style/colors'
 import { useFetch, useTheme } from '../../utils/hooks'
-import { StyledLink, Loader } from '../../utils/style/Atoms'
+import { StyledLink, Loader, LoaderWrapper } from '../../utils/style/Atoms'
 
 const ResultsContainer = styled.div`
   display: flex;
@@ -44,11 +44,6 @@ const JobDescription = styled.div`
   }
 `
 
-const LoaderWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-`
-
 export const formatFetchParams = (answers) => {
   const answerNumbers = Object.keys(answers)
 
@@ -81,7 +76,7 @@ const Results = () => {
 
   return isLoading ? (
     <LoaderWrapper>
-      <Loader />
+      <Loader theme={theme} />
     </LoaderWrapper>
   ) : (
     <ResultsContainer theme={theme}>

@@ -2,8 +2,8 @@ import styled from 'styled-components'
 
 import DefaultPicture from '../../assets/profile.png'
 import Card from '../../components/Card'
-import { useFetch } from '../../utils/hooks'
-import { ErrorStyle, Loader } from '../../utils/style/Atoms'
+import { useFetch, useTheme } from '../../utils/hooks'
+import { ErrorStyle, Loader, LoaderWrapper } from '../../utils/style/Atoms'
 
 const CardsContainer = styled.div`
   margin-left: 20px;
@@ -15,16 +15,19 @@ const CardsContainer = styled.div`
 const Freelances = () => {
   const { data, isLoading, error } = useFetch(`http://localhost:8000/freelances`)
   const { freelancersList } = data
+  const { theme } = useTheme()
 
   if (error) {
     return <ErrorStyle>Il y a eu un problème. Veuillez raffraîchir votre page svp</ErrorStyle>
   }
   return (
-    <CardsContainer>
+    <>
       {isLoading ? (
-        <Loader />
+        <LoaderWrapper>
+          <Loader theme={theme} />
+        </LoaderWrapper>
       ) : (
-        <>
+        <CardsContainer>
           {freelancersList.map((profile) => (
             <Card
               key={profile.id}
@@ -33,9 +36,9 @@ const Freelances = () => {
               title={profile.name}
             />
           ))}
-        </>
+        </CardsContainer>
       )}
-    </CardsContainer>
+    </>
   )
 }
 

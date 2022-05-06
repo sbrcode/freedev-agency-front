@@ -13,12 +13,18 @@ const rotate = keyframes`
 
 export const Loader = styled.div`
   padding: 10px;
-  border: 6px solid ${colors.red};
+  border: 6px solid;
+  ${({ theme }) => (theme === 'light' ? `${colors.fontLight};` : `${colors.fontDark};`)}
   border-bottom-color: transparent;
   border-radius: 22px;
   animation: ${rotate} 1s infinite linear;
   height: 0;
   width: 0;
+`
+
+export const LoaderWrapper = styled.div`
+  display: flex;
+  justify-content: center;
 `
 
 export const StyledLink = styled(Link)`

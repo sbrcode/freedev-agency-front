@@ -6,7 +6,7 @@ import styled from 'styled-components'
 import { SurveyContext } from '../../utils/context'
 import { Loader } from '../../utils/style/Atoms'
 import colors from '../../utils/style/colors'
-import { useFetch } from '../../utils/hooks'
+import { useFetch, useTheme } from '../../utils/hooks'
 import { ErrorStyle } from '../../utils/style/Atoms'
 
 const SurveyContainer = styled.div`
@@ -55,6 +55,7 @@ const ReplyWrapper = styled.div`
 `
 
 const Survey = () => {
+  const { theme } = useTheme()
   const params = useParams()
   const questionNumber = parseInt(params.questionId)
   const prevQuestionNumber = questionNumber - 1
@@ -73,7 +74,11 @@ const Survey = () => {
   return (
     <SurveyContainer>
       <QuestionTitle>Question {questionNumber}</QuestionTitle>
-      {isLoading ? <Loader /> : <QuestionContent>{surveyData && surveyData[questionNumber]}</QuestionContent>}
+      {isLoading ? (
+        <Loader theme={theme} />
+      ) : (
+        <QuestionContent>{surveyData && surveyData[questionNumber]}</QuestionContent>
+      )}
       <ReplyWrapper>
         <ReplyBox onClick={() => saveReply(true)} isSelected={answers[questionNumber] === true}>
           Oui
