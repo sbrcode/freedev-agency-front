@@ -11,3 +11,10 @@
 ## Run project
 
 ### `yarn start`
+
+## Run test
+
+### `yarn test`
+
+### `yarn test -- --coverage`
+
