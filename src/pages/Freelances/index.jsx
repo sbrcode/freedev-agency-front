@@ -31,6 +31,7 @@ const Freelances = () => {
           {freelancersList.map((profile) => (
             <Card
               key={profile.id}
+              id={profile.id}
               label={profile.job}
               picture={profile.picture || DefaultPicture}
               title={profile.name}

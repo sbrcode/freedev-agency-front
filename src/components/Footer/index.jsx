@@ -2,7 +2,6 @@ import { useContext } from 'react'
 import { ThemeContext } from '../../utils/context'
 import styled from 'styled-components'
 import colors from '../../utils/style/colors'
-import EmailInput from '../EmailInput'
 
 const FooterContainer = styled.footer`
   display: flex;
@@ -23,7 +22,6 @@ const Footer = () => {
   const { toggleTheme, theme } = useContext(ThemeContext)
   return (
     <FooterContainer>
-      <EmailInput />
       <NightModeButton onClick={() => toggleTheme()}>Switch mode{theme === 'light' ? '🌙' : ' ☀️'}</NightModeButton>
     </FooterContainer>
   )

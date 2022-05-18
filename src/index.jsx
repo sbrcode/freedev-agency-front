@@ -11,6 +11,7 @@ import Error from './components/Error'
 import reportWebVitals from './reportWebVitals'
 import GlobalStyle from './utils/style/GlobalStyle'
 import { ThemeProvider, SurveyProvider } from './utils/context/index'
+import Profile from './pages/Profile'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
@@ -24,6 +25,7 @@ root.render(
             <Route path="/" element={<Home />} />
             <Route path="survey/:questionId" element={<Survey />} />
             <Route path="results" element={<Results />} />
+            <Route path="freelances/:profileId" element={<Profile />} />
             <Route path="freelances" element={<Freelances />} />
             <Route path="*" element={<Error />} />
           </Routes>

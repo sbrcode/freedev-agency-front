@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import colors from '../../utils/style/colors'
@@ -30,16 +30,18 @@ const CardWrapper = styled.div`
   }
 `
 
-const Card = ({ label, title, picture }) => {
-  const [isFavorite, setIsFavorite] = useState(false)
-  const star = isFavorite ? '⭐️' : ''
-
+const Card = ({ label, title, picture, id }) => {
+  // const [isFavorite, setIsFavorite] = useState(false)
+  // const star = isFavorite ? '⭐️' : ''
+  const navigate = useNavigate()
   return (
-    <CardWrapper onClick={() => setIsFavorite(!isFavorite)}>
+    // <CardWrapper onClick={() => setIsFavorite(!isFavorite)}>
+    <CardWrapper onClick={() => navigate(`/freelances/${id}`)}>
       <CardLabel>{label}</CardLabel>
       <CardImage src={picture} alt="freelance" />
       <span>
-        {star} {title} {star}
+        {title}
+        {/* {star} {title} {star} */}
       </span>
     </CardWrapper>
   )
