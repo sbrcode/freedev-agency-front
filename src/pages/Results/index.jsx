@@ -73,6 +73,7 @@ const Results = () => {
   }
 
   const resultsData = data?.resultsData
+  console.log(resultsData)
 
   return isLoading ? (
     <LoaderWrapper>
@@ -80,15 +81,19 @@ const Results = () => {
     </LoaderWrapper>
   ) : (
     <ResultsContainer theme={theme}>
-      <ResultsTitle theme={theme}>
-        Les compétences dont vous avez besoin :
-        {resultsData &&
-          resultsData.map((result, index) => (
+      {resultsData && resultsData.length !== 0 ? (
+        <ResultsTitle theme={theme}>
+          Les compétences dont vous avez besoin :
+          {resultsData.map((result, index) => (
             <JobTitle key={`result-title-${index}-${result.title}`} theme={theme}>
               {formatJobList(result.title, resultsData.length, index)}
             </JobTitle>
           ))}
-      </ResultsTitle>
+        </ResultsTitle>
+      ) : (
+        <ResultsTitle theme={theme}>Il semblerait que vous n’ayez besoin d’aucune compétence</ResultsTitle>
+      )}
+
       <StyledLink theme={theme} to="/freelances">
         Découvrez nos profils
       </StyledLink>
